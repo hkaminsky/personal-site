@@ -1,0 +1,137 @@
+<!DOCTYPE html><html lang="en"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v4.16.18"><!-- Font preloads --><link rel="preload" href="/_astro/inter-latin-400-normal.C38fXH4l.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/inter-latin-600-normal.LgqL8muc.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/lora-latin-400-normal.BEO3GLPG.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/lora-latin-600-normal.C9KcfMzc.woff2" as="font" type="font/woff2" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://astro-nano-demo.vercel.app/blog/00-first-post/"><!-- Primary Meta Tags --><title>Doing the thing | Harrison Kaminsky</title><meta name="title" content="Doing the thing | Harrison Kaminsky"><meta name="description" content="AI made me a website."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://astro-nano-demo.vercel.app/blog/00-first-post/"><meta property="og:title" content="Doing the thing | Harrison Kaminsky"><meta property="og:description" content="AI made me a website."><meta property="og:image" content="https://astro-nano-demo.vercel.app/nano.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://astro-nano-demo.vercel.app/blog/00-first-post/"><meta property="twitter:title" content="Doing the thing | Harrison Kaminsky"><meta property="twitter:description" content="AI made me a website."><meta property="twitter:image" content="https://astro-nano-demo.vercel.app/nano.png"><!-- <ViewTransitions  /> --><script>
+  function init() {
+    preloadTheme();
+    onScroll();
+    animate();
+
+    const backToTop = document.getElementById("back-to-top");
+    backToTop?.addEventListener("click", (event) => scrollToTop(event));
+
+    const backToPrev = document.getElementById("back-to-prev");
+    backToPrev?.addEventListener("click", () => window.history.back());
+
+    const lightThemeButton = document.getElementById("light-theme-button");
+    lightThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "light");
+      toggleTheme(false);
+    });
+
+    const darkThemeButton = document.getElementById("dark-theme-button");
+    darkThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "dark");
+      toggleTheme(true);
+    });
+
+    const systemThemeButton = document.getElementById("system-theme-button");
+    systemThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "system");
+      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    });
+
+    window.matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", event => {
+        if (localStorage.theme === "system") {
+          toggleTheme(event.matches);
+        }
+      }
+    );
+
+    document.addEventListener("scroll", onScroll);
+  }
+
+  function animate() {
+    const animateElements = document.querySelectorAll(".animate");
+
+    animateElements.forEach((element, index) => {
+      setTimeout(() => {
+        element.classList.add("show");
+      }, index * 150);
+    });
+  }
+
+  function onScroll() {
+    if (window.scrollY > 0) {
+      document.documentElement.classList.add("scrolled");
+    } else {
+      document.documentElement.classList.remove("scrolled");
+    }
+  }
+
+  function scrollToTop(event) {
+    event.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+function toggleTheme(dark) {
+    const css = document.createElement("style");
+
+    css.appendChild(
+      document.createTextNode(
+        `* {
+             -webkit-transition: none !important;
+             -moz-transition: none !important;
+             -o-transition: none !important;
+             -ms-transition: none !important;
+             transition: none !important;
+          }
+        `,
+      )
+    );
+
+    document.head.appendChild(css);
+
+    if (dark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    document.documentElement.offsetHeight;
+    document.head.removeChild(css);
+  }
+
+  function preloadTheme() {
+    const userTheme = localStorage.theme;
+
+    if (userTheme === "light" || userTheme === "dark") {
+      toggleTheme(userTheme === "dark");
+    } else {
+      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => init());
+  document.addEventListener("astro:after-swap", () => init());
+  preloadTheme();
+</script><link rel="stylesheet" href="/_astro/_slug_.Cz8niAf7.css"></head> <body> <header> <div class="mx-auto max-w-screen-sm px-5">  <div class="flex flex-wrap gap-y-2 justify-between"> <a href="/" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out">  <div class="flex items-center justify-center"> <div class="relative group"> <!-- Main logo container with smaller, more proportional dimensions --> <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-gray-100 dark:via-white dark:to-gray-50 shadow-md shadow-black/8 dark:shadow-white/4 transition-all duration-500 ease-out group-hover:shadow-lg group-hover:shadow-black/12 dark:group-hover:shadow-white/8 group-hover:scale-[1.03]"> <!-- Inner glow effect --> <div class="absolute inset-0.5 rounded-md bg-gradient-to-br from-white/5 to-transparent dark:from-black/5 opacity-60"></div> <!-- Typography with perfect optical alignment --> <div class="relative flex items-center justify-center"> <span class="text-white dark:text-gray-900 font-semibold text-sm tracking-[-0.01em] leading-none select-none" style="font-feature-settings: 'kern' 1, 'liga' 1;">
+HK
+</span> </div> <!-- Subtle highlight for depth --> <div class="absolute top-0.5 left-0.5 right-0.5 h-1.5 bg-gradient-to-b from-white/10 to-transparent dark:from-black/5 rounded-t-md"></div> </div> <!-- Hover state enhancement --> <div class="absolute inset-0 rounded-lg bg-gradient-to-br from-blue-500/0 via-purple-500/0 to-blue-600/0 group-hover:from-blue-500/5 group-hover:via-purple-500/3 group-hover:to-blue-600/5 transition-all duration-700 ease-out"></div> <!-- Focus ring for accessibility --> <div class="absolute inset-0 rounded-lg ring-0 ring-blue-500/20 group-focus-visible:ring-2 transition-all duration-200"></div> </div> </div>  </a> <nav class="flex gap-1"> <a href="/work" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+work
+ </a> <span> / </span> <a href="/projects" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+projects
+ </a> <span> / </span> <a href="/blog" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+writing
+ </a> </nav> </div>  </div> </header> <main>  <div class="mx-auto max-w-screen-sm px-5">  <div class="animate"> <a href="/blog" class="relative group w-fit flex pl-7 pr-3 py-1.5 flex-nowrap rounded border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute top-1/2 left-2 -translate-y-1/2 size-4 stroke-2 fill-none stroke-current"> <line x1="5" y1="12" x2="19" y2="12" class="translate-x-2 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></line> <polyline points="12 5 5 12 12 19" class="translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></polyline> </svg> <div class="text-sm"> 
+Back to writing
+ </div> </a> </div> <div class="space-y-1 my-10"> <div class="animate flex items-center gap-1.5"> <div class="font-base text-sm"> <time datetime="2025-12-29T00:00:00.000Z"> Dec 28, 2025 </time> </div>
+&bull;
+<div class="font-base text-sm"> 4 min read </div> </div> <div class="animate text-2xl font-semibold text-black dark:text-white"> Doing the thing </div> </div> <article class="animate"> <p>You’ve made it here! Thanks for your curiosity. Creating this site has been a personal project, but it is also my “professional” website.</p>
+<p>It’s the first time I’ve built and deployed something using <i>mostly</i> AI tools. Also the first time I’ve built and deployed <i>anything</i> by myself, so it was mostly a test to see if I could successfully do this even with my limited coding knowledge. I cheated to get here, but isn’t that all vibe coding is anyway?</p>
+<p>I did this:</p>
+<ul>
+<li>I have a paid subscription to <a target="blank" href="https://www.lennysnewsletter.com/">Lenny Rachitsky’s excellent newsletter</a>, which I expensed through my education budget at work. Being a newsletter subscriber gave me a free 1-year pro subscription to Bolt.new</li>
+<li>I signed up for Bolt.new (for free, see above), which is a cloud-based coding assistant. Right in a browser tab, you can view your whole code repo, preview the build, create databases and backends, set up and manage integrations, analytics, manage deployments, and do many many more things on a growing list of things. Scary powerful. There are other tools that can do similar things: Lovable, Replit, Cursor, Claude Code, Copilot — to name a few.</li>
+<li>I played around with Bolt a bit. I asked it to make a Airbnb home page clone just based on a screenshot I took of the site that day. That was scary real-feeling. Obviously nothing powering it, so it was just a front-end facade of re-engineered components, but it finished doing its thing in a matter of minutes. I asked it to add some specific button states and interactions on the page, limiting the updates to just a single feature, and it did that really well. I saw the potential of this technology especially as someone who has started + stopped learning how to code in many spurts over the course of a decade-plus. Now, I could speak in natural language and build things myself. I knew to be truly dangerous I’d still need to actually learn to code, as an expert wielding this new technology will be infinitely more powerful than a no-nothing.</li>
+<li>Later, I saw someone’s personal site I liked. I didn’t have a working personal site anymore (long story). I saw the example site used an open source repo (meaning all the code for the site’s configuration, components, templates, etc. are available publically in GitHub.)</li>
+<li>After a few minutes of research, I simply took the URL of the public GitHub repo, prefixed the URL with bolt.new/~/ in my browser (like “bolt.new/~github.com”) and hit enter. Bolt.new opened and set up the project instantly.</li>
+<li>I got to work fine-tuning the details of the site, design and interaction tweaks, and template changes so that it would better fit my needs, with Bolt.new as my coding assistant (which is also really dumb but also smarter than any human ever).</li>
+<li>I started adding markdown files with my content — which of course were created with the help of ChatGPT after I gave it the context and relevant information about each project or work experience I wanted to document.</li>
+<li>Now, I’m at the stage of doing a few different things: setting up password protection on all the /projects pages (because, private, duh), as well as actually deploying this whole thing at my domain, harrisonkaminsky.com, which I have owned for decades, but never really did much with it. Maybe this site will be the one that sticks. If you’re seeing this site, it means either I’m showing it to you on my local machine, or I did the things above already.</li>
+</ul>
+<p><i>DISCLAIMER: This post was pretty much the only thing on this site not mostly generated by AI (and lots of fine-tuning).</i></p> </article>  </div>  </main> <footer class="animate"> <div class="mx-auto max-w-screen-sm px-5">  <div class="relative"> <div class="absolute right-0 -top-20"> <button id="back-to-top" class="relative group w-fit flex pl-8 pr-3 py-1.5 flex-nowrap rounded border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute top-1/2 left-2 -translate-y-1/2 size-4 stroke-2 fill-none stroke-current rotate-90"> <line x1="5" y1="12" x2="19" y2="12" class="translate-x-2 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></line> <polyline points="12 5 5 12 12 19" class="translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></polyline> </svg> <div class="text-sm">
+Back to top
+</div> </button> </div> </div> <div class="flex justify-between items-center"> <div>
+&copy; 2025 | Harrison Kaminsky </div> <div class="flex flex-wrap gap-1 items-center"> <button id="light-theme-button" aria-label="Light theme" class="group size-8 flex items-center justify-center rounded-full"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg> </button> <button id="dark-theme-button" aria-label="Dark theme" class="group size-8 flex items-center justify-center rounded-full"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </button> <button id="system-theme-button" aria-label="System theme" class="group size-8 flex items-center justify-center rounded-full"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"> <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect> <line x1="8" y1="21" x2="16" y2="21"></line> <line x1="12" y1="17" x2="12" y2="21"></line> </svg> </button> </div> </div>  </div> </footer> </body></html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="en"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><meta name="generator" content="Astro v4.16.18"><!-- Font preloads --><link rel="preload" href="/_astro/inter-latin-400-normal.C38fXH4l.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/inter-latin-600-normal.LgqL8muc.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/lora-latin-400-normal.BEO3GLPG.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/_astro/lora-latin-600-normal.C9KcfMzc.woff2" as="font" type="font/woff2" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://astro-nano-demo.vercel.app/projects/merch-aid/merch-aid/"><!-- Primary Meta Tags --><title>Merch Aid | Harrison Kaminsky</title><meta name="title" content="Merch Aid | Harrison Kaminsky"><meta name="description" content="Supporting small businesses during COVID with merch drops by local artists"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://astro-nano-demo.vercel.app/projects/merch-aid/merch-aid/"><meta property="og:title" content="Merch Aid | Harrison Kaminsky"><meta property="og:description" content="Supporting small businesses during COVID with merch drops by local artists"><meta property="og:image" content="https://astro-nano-demo.vercel.app/nano.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://astro-nano-demo.vercel.app/projects/merch-aid/merch-aid/"><meta property="twitter:title" content="Merch Aid | Harrison Kaminsky"><meta property="twitter:description" content="Supporting small businesses during COVID with merch drops by local artists"><meta property="twitter:image" content="https://astro-nano-demo.vercel.app/nano.png"><!-- <ViewTransitions  /> --><script>
+  function init() {
+    preloadTheme();
+    onScroll();
+    animate();
+
+    const backToTop = document.getElementById("back-to-top");
+    backToTop?.addEventListener("click", (event) => scrollToTop(event));
+
+    const backToPrev = document.getElementById("back-to-prev");
+    backToPrev?.addEventListener("click", () => window.history.back());
+
+    const lightThemeButton = document.getElementById("light-theme-button");
+    lightThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "light");
+      toggleTheme(false);
+    });
+
+    const darkThemeButton = document.getElementById("dark-theme-button");
+    darkThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "dark");
+      toggleTheme(true);
+    });
+
+    const systemThemeButton = document.getElementById("system-theme-button");
+    systemThemeButton?.addEventListener("click", () => {
+      localStorage.setItem("theme", "system");
+      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    });
+
+    window.matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", event => {
+        if (localStorage.theme === "system") {
+          toggleTheme(event.matches);
+        }
+      }
+    );
+
+    document.addEventListener("scroll", onScroll);
+  }
+
+  function animate() {
+    const animateElements = document.querySelectorAll(".animate");
+
+    animateElements.forEach((element, index) => {
+      setTimeout(() => {
+        element.classList.add("show");
+      }, index * 150);
+    });
+  }
+
+  function onScroll() {
+    if (window.scrollY > 0) {
+      document.documentElement.classList.add("scrolled");
+    } else {
+      document.documentElement.classList.remove("scrolled");
+    }
+  }
+
+  function scrollToTop(event) {
+    event.preventDefault();
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  }
+
+function toggleTheme(dark) {
+    const css = document.createElement("style");
+
+    css.appendChild(
+      document.createTextNode(
+        `* {
+             -webkit-transition: none !important;
+             -moz-transition: none !important;
+             -o-transition: none !important;
+             -ms-transition: none !important;
+             transition: none !important;
+          }
+        `,
+      )
+    );
+
+    document.head.appendChild(css);
+
+    if (dark) {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+
+    document.documentElement.offsetHeight;
+    document.head.removeChild(css);
+  }
+
+  function preloadTheme() {
+    const userTheme = localStorage.theme;
+
+    if (userTheme === "light" || userTheme === "dark") {
+      toggleTheme(userTheme === "dark");
+    } else {
+      toggleTheme(window.matchMedia("(prefers-color-scheme: dark)").matches);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => init());
+  document.addEventListener("astro:after-swap", () => init());
+  preloadTheme();
+</script><link rel="stylesheet" href="/_astro/_slug_.Cz8niAf7.css"></head> <body> <header> <div class="mx-auto max-w-screen-sm px-5">  <div class="flex flex-wrap gap-y-2 justify-between"> <a href="/" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out">  <div class="flex items-center justify-center"> <div class="relative group"> <!-- Main logo container with smaller, more proportional dimensions --> <div class="flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 dark:from-gray-100 dark:via-white dark:to-gray-50 shadow-md shadow-black/8 dark:shadow-white/4 transition-all duration-500 ease-out group-hover:shadow-lg group-hover:shadow-black/12 dark:group-hover:shadow-white/8 group-hover:scale-[1.03]"> <!-- Inner glow effect --> <div class="absolute inset-0.5 rounded-md bg-gradient-to-br from-white/5 to-transparent dark:from-black/5 opacity-60"></div> <!-- Typography with perfect optical alignment --> <div class="relative flex items-center justify-center"> <span class="text-white dark:text-gray-900 font-semibold text-sm tracking-[-0.01em] leading-none select-none" style="font-feature-settings: 'kern' 1, 'liga' 1;">
+HK
+</span> </div> <!-- Subtle highlight for depth --> <div class="absolute top-0.5 left-0.5 right-0.5 h-1.5 bg-gradient-to-b from-white/10 to-transparent dark:from-black/5 rounded-t-md"></div> </div> <!-- Hover state enhancement --> <div class="absolute inset-0 rounded-lg bg-gradient-to-br from-blue-500/0 via-purple-500/0 to-blue-600/0 group-hover:from-blue-500/5 group-hover:via-purple-500/3 group-hover:to-blue-600/5 transition-all duration-700 ease-out"></div> <!-- Focus ring for accessibility --> <div class="absolute inset-0 rounded-lg ring-0 ring-blue-500/20 group-focus-visible:ring-2 transition-all duration-200"></div> </div> </div>  </a> <nav class="flex gap-1"> <a href="/work" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+work
+ </a> <span> / </span> <a href="/projects" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+projects
+ </a> <span> / </span> <a href="/blog" target="_self" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+writing
+ </a> </nav> </div>  </div> </header> <main>  <div class="mx-auto max-w-screen-sm px-5">  <div class="animate"> <a href="/projects" class="relative group w-fit flex pl-7 pr-3 py-1.5 flex-nowrap rounded border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute top-1/2 left-2 -translate-y-1/2 size-4 stroke-2 fill-none stroke-current"> <line x1="5" y1="12" x2="19" y2="12" class="translate-x-2 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></line> <polyline points="12 5 5 12 12 19" class="translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></polyline> </svg> <div class="text-sm"> 
+Back to projects
+ </div> </a> </div> <div class="space-y-1 my-10"> <div class="animate flex items-center gap-1.5"> <div class="font-base text-sm"> <time datetime="2020-04-01T04:00:00.000Z"> Apr 1, 2020 </time> </div>
+&bull;
+<div class="font-base text-sm"> 3 min read </div> </div> <div class="animate text-2xl font-semibold text-black dark:text-white"> Merch Aid </div> <nav class="animate flex gap-1"> <a href="https://www.getmerchaid.com/" target="_blank" class="inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out underline underline-offset-2"> 
+View
+ </a>   </nav> </div> <article class="animate"> <p><img src="/project-images/merch-aid/merch-aid-collage.png" alt="Merch Aid"></p>
+<p>Merch Aid was a scrappy, fast-moving fundraising platform built during the early months of COVID—when the future of local small businesses (especially in NYC) was suddenly in real danger. The idea was straightforward: help shuttered businesses generate urgent cash to cover rent and wages by selling merchandise people would actually want to wear—created in collaboration with artists and designers.</p>
+<h2 id="the-problem">The problem</h2>
+<p>In April 2020, the stakes were painfully clear: many NYC small businesses weren’t going to make it through lockdown. Merch Aid set out to create a new revenue stream for these neighborhood spots—one that could move quickly, scale beyond a single community, and send <strong>100% of profits directly back to the business owners.</strong></p>
+<p><img src="/project-images/merch-aid/merch-aid-casamag.png" alt="Merch Aid"></p>
+<h2 id="what-we-built-and-how-it-worked">What we built (and how it worked)</h2>
+<p>Merch Aid paired <strong>mom-and-pop businesses</strong> with <strong>artists and designers</strong> to create exclusive, limited merchandise for each business. The drops were intentionally time-based and repeatable: <strong>new collaborations launched daily at 5PM</strong>, creating a simple rhythm people could follow and show up for.</p>
+<p>The roster of collaborators included names like <strong>Paula Scher, Timothy Goodman, Debbie Millman, and New York Nico</strong>, alongside many others—each teaming up with a small business to create something special and worth rallying around.</p>
+<p>Merch Aid started in NYC and quickly expanded beyond it, supporting small businesses in places like <strong>LA and Austin</strong> as well.</p>
+<p><img src="/project-images/merch-aid/merch-aid-labon.png" alt="Merch Aid"></p>
+<h2 id="launch--results">Launch + results</h2>
+<p>The response was immediate. Drops routinely sold out within hours, and social sharing became a huge driver—people posting what they bought and shouting out the places they were trying to keep alive.</p>
+<p>The platform:</p>
+<ul>
+<li>Raised <strong>$500K+</strong> for small businesses</li>
+<li>Reached <strong>top 5% of Shopify stores</strong> in sales during the first two months</li>
+<li>Returned <strong>100% of profits</strong> to the businesses themselves</li>
+</ul>
+<p><img src="/project-images/merch-aid/merch-aid-ugc.png" alt="Merch Aid"></p>
+<h2 id="my-role">My role</h2>
+<p>I joined shortly after the initial launch and jumped in wherever the work was hardest and most urgent.</p>
+<ul>
+<li>Managed outreach to potential partner artists and benefiting small businesses</li>
+<li>Coordinated art production end-to-end</li>
+<li>Worked through merchandise manufacturing logistics</li>
+<li>Produced go-to-market assets for each daily drop (site + social)</li>
+<li>Helped manage Shopify orders and customer support</li>
+</ul>
+<p>It was genuinely bootstrapped—high output, lots of moving pieces, and a team doing whatever it took to keep the engine running day after day.</p>
+<p><img src="/project-images/merch-aid/merch-aid-nynico.png" alt="Merch Aid"></p>
+<h2 id="coverage--awards">Coverage + awards</h2>
+<p>The project earned press coverage across outlets including <strong>Vogue, NBC, ABC, GQ, Gothamist, Time Out, and Fast Company</strong>, and it received recognition across major award shows, including:</p>
+<ul>
+<li><strong>The One Show</strong> (Silver, Bronze, 3x Shortlist)</li>
+<li><strong>D&#x26;AD</strong> (Wood Pencil, Shortlist)</li>
+<li><strong>Clio Awards</strong> (3x Bronze)</li>
+<li><strong>Cannes Lions</strong> (Shortlist)</li>
+<li><strong>ADC</strong> (2x Silver, Bronze)</li>
+</ul>
+<h2 id="case-study-video">Case study video</h2>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; margin: 2rem 0;">
+  <video style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" controls preload="metadata">
+    <source src="https://dpk6zrxldcuco.cloudfront.net/2021/prof/archive/transformed/7aebb368-6ca1-11eb-89f5-bc764e088e70/1920x1080.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</div> </article>  </div>  </main> <footer class="animate"> <div class="mx-auto max-w-screen-sm px-5">  <div class="relative"> <div class="absolute right-0 -top-20"> <button id="back-to-top" class="relative group w-fit flex pl-8 pr-3 py-1.5 flex-nowrap rounded border border-black/15 dark:border-white/20 hover:bg-black/5 dark:hover:bg-white/5 hover:text-black dark:hover:text-white transition-colors duration-300 ease-in-out"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="absolute top-1/2 left-2 -translate-y-1/2 size-4 stroke-2 fill-none stroke-current rotate-90"> <line x1="5" y1="12" x2="19" y2="12" class="translate-x-2 group-hover:translate-x-0 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-in-out"></line> <polyline points="12 5 5 12 12 19" class="translate-x-1 group-hover:translate-x-0 transition-transform duration-300 ease-in-out"></polyline> </svg> <div class="text-sm">
+Back to top
+</div> </button> </div> </div> <div class="flex justify-between items-center"> <div>
+&copy; 2025 | Harrison Kaminsky </div> <div class="flex flex-wrap gap-1 items-center"> <button id="light-theme-button" aria-label="Light theme" class="group size-8 flex items-center justify-center rounded-full"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"> <circle cx="12" cy="12" r="5"></circle> <line x1="12" y1="1" x2="12" y2="3"></line> <line x1="12" y1="21" x2="12" y2="23"></line> <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line> <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line> <line x1="1" y1="12" x2="3" y2="12"></line> <line x1="21" y1="12" x2="23" y2="12"></line> <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line> <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line> </svg> </button> <button id="dark-theme-button" aria-label="Dark theme" class="group size-8 flex items-center justify-center rounded-full"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"> <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path> </svg> </button> <button id="system-theme-button" aria-label="System theme" class="group size-8 flex items-center justify-center rounded-full"> <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:stroke-black group-hover:dark:stroke-white transition-colors duration-300 ease-in-out"> <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect> <line x1="8" y1="21" x2="16" y2="21"></line> <line x1="12" y1="17" x2="12" y2="21"></line> </svg> </button> </div> </div>  </div> </footer> </body></html>

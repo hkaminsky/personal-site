@@ -1,0 +1,32 @@
+---
+import Container from "@components/Container.astro";
+import Link from "@components/Link.astro";
+import Logo from "@components/Logo.astro";
+---
+
+<header>
+  <Container>
+    <div class="flex flex-wrap gap-y-2 justify-between">
+      <Link href="/" underline={false}>
+        <Logo />
+      </Link>
+      <nav class="flex gap-1">
+        <Link href="/work">
+          work
+        </Link>
+        <span>
+          {`/`}
+        </span>
+        <Link href="/projects">
+          projects
+        </Link>
+        <span>
+          {`/`}
+        </span>
+        <Link href="/blog">
+          writing
+        </Link>
+      </nav>
+    </div>
+  </Container>
+</header>
