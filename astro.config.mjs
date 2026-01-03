@@ -4,6 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
-  site: process.env.NODE_ENV === "production" ? "https://astro-nano-demo.vercel.app" : "http://localhost:4321",
+  site: 'https://hkaminsky.github.io',
+  base: '/personal-site',
   integrations: [mdx(), sitemap(), tailwind()],
 });
