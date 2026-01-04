@@ -8,10 +8,13 @@ type Props = {
 }
 
 const { href, external, underline = true, ...rest } = Astro.props;
+
+const isInternal = href.startsWith('/') && !external;
+const resolvedHref = isInternal ? `${import.meta.env.BASE_URL}${href.slice(1)}` : href;
 ---
 
-<a 
-  href={href} 
+<a
+  href={resolvedHref} 
   target={ external ? "_blank" : "_self" } 
   class={cn("inline-block decoration-black/15 dark:decoration-white/30 hover:decoration-black/25 hover:dark:decoration-white/50 text-current hover:text-black hover:dark:text-white transition-colors duration-300 ease-in-out", underline && "underline underline-offset-2")}
   {...rest}>
