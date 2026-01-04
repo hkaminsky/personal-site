@@ -174,18 +174,6 @@ Add a `-` or `+` for items. Don't mix. For sub items, indent.
 
 ---
 
-### Relative Image
-
-Use the `![title](./image.*)` pattern relative to the same folder as the markdown file. Notice the period.
-
-```md
-![Square Pants](./spongebob.webp)
-```
-
-![Square Pants](./spongebob.webp)
-
----
-
 ### Public Image
 
 Use the `![title](/image.*)` pattern relative to the public folder. No period.
