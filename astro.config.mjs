@@ -8,7 +8,7 @@ const isPreviewBuild = process.env.PREVIEW_BUILD === 'true';
 
 const getBasePath = () => {
   if (isPreviewBuild) return '/personal-site/preview/';
-  if (isGitHubPages) return '/personal-site';
+  if (isGitHubPages) return '/personal-site/';
   return '/';
 };
 
