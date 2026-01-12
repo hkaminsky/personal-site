@@ -23,7 +23,7 @@ const project = Astro.props;
 const { Content } = await project.render();
 ---
 
-<PageLayout title={project.data.title} description={project.data.description}>
+<PageLayout title={project.data.title} description={project.data.description} noindex>
   <Container>
     <PasswordGate>
       <div class="animate">

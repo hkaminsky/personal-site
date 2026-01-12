@@ -14,5 +14,11 @@ export default defineConfig({
   markdown: {
     rehypePlugins: [[rehypeBaseUrl, { base: basePath }]],
   },
-  integrations: [mdx(), sitemap(), tailwind()],
+  integrations: [
+    mdx(),
+    sitemap({
+      filter: (page) => !page.includes('/projects/'),
+    }),
+    tailwind(),
+  ],
 });
