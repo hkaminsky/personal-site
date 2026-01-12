@@ -149,6 +149,85 @@ Projects are case studies in folders: `src/content/projects/[Name]/[Name].md`
 }
 ```
 
+## Password Protection
+
+Project detail pages are protected by a client-side password gate requiring authentication before viewing content. Search engine crawling is also blocked for these pages - see [Search Engine Blocking](#search-engine-blocking) below.
+
+### How It Works
+
+| Aspect | Details |
+|--------|---------|
+| **Component** | `src/components/PasswordGate.astro` |
+| **Password Location** | `PROJECTS_PASSWORD` constant in `src/consts.ts` |
+| **Protected Pages** | All individual project pages at `/projects/[slug]` |
+| **Public Pages** | Project listing at `/projects/` (titles/descriptions visible) |
+| **Session Key** | `projects_authenticated` in `sessionStorage` |
+
+### Authentication Flow
+
+1. User visits a project detail page (e.g., `/projects/gatorade/gatorade/`)
+2. Component checks `sessionStorage` for `projects_authenticated === "true"`
+3. If not authenticated, displays password form
+4. On correct password entry, sets session storage and reveals content
+5. Authentication persists for browser session (clears when browser closes)
+6. All project pages share the same session - authenticate once, access all
+
+### Security Characteristics
+
+- **Client-side only** - password is embedded in page JavaScript at build time
+- **Session-based** - no server validation or database lookup
+- **Single shared password** - all projects use the same password
+- **Deterrent-level security** - suitable for portfolio gatekeeping, not sensitive data
+- **Password visible in source** - determined users can find it in page source
+
+### Key Files
+
+- `src/components/PasswordGate.astro` - The wrapper component with form and logic
+- `src/consts.ts` - Contains `PROJECTS_PASSWORD` constant
+- `src/pages/projects/[...slug].astro` - Uses `<PasswordGate>` to wrap content
+
+## Search Engine Blocking
+
+The entire `/projects/` path is blocked from search engine indexing through two mechanisms:
+
+| Mechanism | File | Effect |
+|-----------|------|--------|
+| **robots.txt** | `src/pages/robots.txt.ts` | Tells crawlers not to index `/projects/` |
+| **Sitemap exclusion** | `astro.config.mjs` | Removes all `/projects/` URLs from sitemap |
+
+### How It Works
+
+1. **robots.txt** - Generated dynamically, includes `Disallow: /projects/` directive
+2. **Sitemap filter** - The `@astrojs/sitemap` integration uses a filter function to exclude any page containing `/projects/`
+
+### What Is Blocked
+
+| Path | Blocked | Notes |
+|------|---------|-------|
+| `/projects/` | Yes | The project listing page |
+| `/projects/[slug]/` | Yes | All individual project detail pages |
+| `/blog/`, `/work/`, etc. | No | Other sections are indexed normally |
+
+### Key Implementation Details
+
+**robots.txt.ts:**
+```typescript
+Disallow: /projects/
+```
+
+**astro.config.mjs:**
+```javascript
+sitemap({
+  filter: (page) => !page.includes('/projects/'),
+}),
+```
+
+### Limitations
+
+- robots.txt is advisory - well-behaved crawlers (Google, Bing) respect it, but malicious bots may ignore it
+- This provides privacy through obscurity, not true access control
+- Direct links shared externally can still be accessed (password gate provides the actual protection)
+
 ## Site Configuration
 
 Edit `src/consts.ts` to modify site metadata:
@@ -256,3 +335,10 @@ Edit `src/components/Header.astro` for main navigation links.
 ### Updating Footer/Copyright
 
 Edit `src/components/Footer.astro`.
+
+### Changing the Projects Password
+
+1. Open `src/consts.ts`
+2. Find `export const PROJECTS_PASSWORD = "...";`
+3. Change the password value
+4. Rebuild the site - the new password will be embedded in all project pages
