@@ -4,7 +4,7 @@
 
 This is Harrison Kaminsky's personal portfolio website showcasing work history, projects, awards, and blog writing. The site is built on the **Astro Nano** theme - a minimalist, lightweight portfolio template using Astro, Tailwind CSS, and TypeScript.
 
-**Live URL:** https://hkaminsky.github.io/personal-site/
+**Live URL:** https://harrisonkaminsky.com
 
 ## Technology Stack
 
@@ -25,36 +25,38 @@ This is Harrison Kaminsky's personal portfolio website showcasing work history, 
 
 ## Multi-Environment Deployment
 
-**IMPORTANT:** This project is configured to run in two environments:
+This project runs in multiple environments with a simplified configuration:
 
-1. **Bolt.new / Local Development** - Base path is `/`
-2. **GitHub Pages (Production)** - Base path is `/personal-site/`
+| Environment | Base Path | Notes |
+|-------------|-----------|-------|
+| **Bolt.new / Local Dev** | `/` | Default for development |
+| **GitHub Pages (Production)** | `/` | Custom domain (harrisonkaminsky.com) |
+| **Preview/Staging** | `/personal-site/preview/` | Optional staging builds |
+
+### Custom Domain Setup
+
+The site uses a custom domain via GitHub Pages:
+- **Domain:** harrisonkaminsky.com
+- **CNAME file:** Located in `public/CNAME`
+- Since the custom domain serves from root, both dev and production use `/` as the base path
 
 ### Environment Variables
 
-The build system uses environment flags to determine the correct base path:
-
 | Variable | Value | Purpose |
 |----------|-------|---------|
-| `GITHUB_PAGES` | `'true'` | Set during GitHub Actions deployment |
-| `PREVIEW_BUILD` | `'true'` | For preview/staging deployments |
+| `PREVIEW_BUILD` | `'true'` | Only needed for staging/preview deployments at a subdirectory |
 
 ### Base Path Logic (astro.config.mjs)
 
 ```javascript
-const isGitHubPages = process.env.GITHUB_PAGES === 'true';
 const isPreviewBuild = process.env.PREVIEW_BUILD === 'true';
 
-const getBasePath = () => {
-  if (isPreviewBuild) return '/personal-site/preview/';
-  if (isGitHubPages) return '/personal-site/';
-  return '/';  // Bolt.new and local dev
-};
+const basePath = isPreviewBuild ? '/personal-site/preview/' : '/';
 ```
 
 ### Image Path Handling
 
-A custom rehype plugin (`src/lib/rehype-base-url.mjs`) automatically prepends the base path to image URLs in markdown content. This ensures images work correctly in both environments without manual path changes.
+A custom rehype plugin (`src/lib/rehype-base-url.mjs`) automatically prepends the base path to image URLs in markdown content. With the custom domain, this is typically a no-op since base is `/`, but it's preserved for preview build compatibility.
 
 **How it works:** Images referenced as `/project-images/...` in markdown are automatically transformed to include the base path during build.
 
@@ -77,6 +79,7 @@ A custom rehype plugin (`src/lib/rehype-base-url.mjs`) automatically prepends th
 │   ├── consts.ts       # Site configuration
 │   └── types.ts        # TypeScript types
 ├── public/
+│   ├── CNAME           # Custom domain for GitHub Pages
 │   ├── fonts/          # Custom font files
 │   └── project-images/ # Project screenshots/images
 ├── .github/workflows/  # GitHub Actions deployment
@@ -194,14 +197,30 @@ export const SOCIALS = [
 
 Deployment is automated via GitHub Actions (`.github/workflows/deploy.yml`):
 - Triggers on push to `main` branch
-- Uses `withastro/action@v5` with `GITHUB_PAGES: 'true'` env var
-- Deploys to GitHub Pages
+- Uses `withastro/action@v5`
+- Deploys to GitHub Pages with custom domain (harrisonkaminsky.com)
+
+### DNS Configuration (One-Time Setup)
+
+To complete custom domain setup, configure DNS at your registrar:
+
+**Option A - Apex Domain:**
+Add A records pointing to GitHub's IPs:
+- 185.199.108.153
+- 185.199.109.153
+- 185.199.110.153
+- 185.199.111.153
+
+**Option B - With www subdomain:**
+Add a CNAME record for `www` pointing to `hkaminsky.github.io`
+
+After DNS propagates, enable "Enforce HTTPS" in GitHub repo Settings > Pages.
 
 ### Bolt.new (Development)
 
 When running in Bolt.new:
 - No environment variables needed
-- Base path defaults to `/`
+- Base path is `/`
 - Dev server runs on port 4321
 
 ## Environment Variables (.env)

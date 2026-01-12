@@ -4,19 +4,12 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import { rehypeBaseUrl } from "./src/lib/rehype-base-url.mjs";
 
-const isGitHubPages = process.env.GITHUB_PAGES === 'true';
 const isPreviewBuild = process.env.PREVIEW_BUILD === 'true';
 
-const getBasePath = () => {
-  if (isPreviewBuild) return '/personal-site/preview/';
-  if (isGitHubPages) return '/personal-site/';
-  return '/';
-};
-
-const basePath = getBasePath();
+const basePath = isPreviewBuild ? '/personal-site/preview/' : '/';
 
 export default defineConfig({
-  site: 'https://hkaminsky.github.io',
+  site: 'https://harrisonkaminsky.com',
   base: basePath,
   markdown: {
     rehypePlugins: [[rehypeBaseUrl, { base: basePath }]],

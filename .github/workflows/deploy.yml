@@ -19,8 +19,6 @@ jobs:
 
       - name: Install, build, and upload your site
         uses: withastro/action@v5
-        env:
-          GITHUB_PAGES: 'true'
 
   deploy:
     needs: build
