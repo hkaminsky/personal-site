@@ -34,6 +34,8 @@ export const AWARDS: Metadata = {
   DESCRIPTION: "Recognition and awards received for outstanding work and achievements.",
 };
 
+export const PROJECTS_PASSWORD = "kaminskyproject";
+
 export const SOCIALS: Socials = [
   { 
     NAME: "linkedin",
